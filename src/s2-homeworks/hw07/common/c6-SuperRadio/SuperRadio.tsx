@@ -1,8 +1,8 @@
 import React, {
-    ChangeEvent,
-    InputHTMLAttributes,
-    DetailedHTMLProps,
-    HTMLAttributes,
+  ChangeEvent,
+  InputHTMLAttributes,
+  DetailedHTMLProps,
+  HTMLAttributes, useState,
 } from 'react'
 import s from './SuperRadio.module.css'
 
@@ -34,9 +34,13 @@ const SuperRadio: React.FC<SuperRadioPropsType> = ({
     spanProps,
     ...restProps
 }) => {
-    const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-        // делают студенты
+
+
+    const onChangeCallback = (id:number, e: ChangeEvent<HTMLInputElement>) => {
+      onChangeOption && onChangeOption(id);
     }
+
+
 
     const finalRadioClassName = s.radio + (className ? ' ' + className : '')
     const spanClassName = s.span + (spanProps?.className ? ' ' + spanProps.className : '')
@@ -48,9 +52,12 @@ const SuperRadio: React.FC<SuperRadioPropsType> = ({
                       id={id + '-input-' + o.id}
                       className={finalRadioClassName}
                       type={'radio'}
+                      name="radio"
+                      value={o.value}
+                      checked={value === o.id}
                       // name, checked, value делают студенты
 
-                      onChange={onChangeCallback}
+                      onChange={(e) => onChangeCallback(o.id, e)}
                       {...restProps}
                   />
                   <span
