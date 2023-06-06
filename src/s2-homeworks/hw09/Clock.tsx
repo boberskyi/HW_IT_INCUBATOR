@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import SuperButton from '../hw04/common/c2-SuperButton/SuperButton'
-import {restoreState} from '../hw06/localStorage/localStorage'
+import {restoreState, saveState} from '../hw06/localStorage/localStorage'
 import s from './Clock.module.css'
 
 function Clock() {
@@ -12,8 +12,10 @@ function Clock() {
     const start = () => {
         // пишут студенты // запустить часы (должно отображаться реальное время, а не +1)
         // сохранить ид таймера (https://learn.javascript.ru/settimeout-setinterval#setinterval)
-        let startDate = new Date().getDay();
-console.log(startDate);
+
+        // saveState
+        let timerTest = setInterval(() => setDate(new Date(restoreState('hw9-date', Date.now()))), 1000);
+        // timer test to timerId
     }
 
     const stop = () => {
@@ -24,21 +26,20 @@ console.log('stop');
     const onMouseEnter = () => setShow(true);
     const onMouseLeave = () => setShow(false);
 
-    const currentDate = new Date();
 
-    const stringTime = currentDate.toLocaleTimeString('en-US', {
+    const stringTime = date.toLocaleTimeString('en-US', {
         hour12: false,
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit'
     }) || '';
-    const stringDate = currentDate.toLocaleDateString('en-US', {
+    const stringDate = date.toLocaleDateString('en-US', {
         day: '2-digit',
         month: '2-digit',
         year: 'numeric'
     }).replace(/\//g, '.') || '';
-    const stringDay = currentDate.toLocaleString('en-US', { weekday: 'long' }) || '';
-    const stringMonth = currentDate.toLocaleString('en-US', { month: 'long' }) || '';
+    const stringDay = date.toLocaleString('en-US', { weekday: 'long' }) || '';
+    const stringMonth = date.toLocaleString('en-US', { month: 'long' }) || '';
 
 
     return (
