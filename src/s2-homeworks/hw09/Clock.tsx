@@ -7,7 +7,7 @@ function Clock() {
     const [timerId, setTimerId] = useState<number | undefined>(undefined)
     // for autotests // не менять // можно подсунуть в локалСторэдж нужную дату, чтоб увидеть как она отображается
     const [date, setDate] = useState<Date>(new Date(restoreState('hw9-date', Date.now())))
-    const [show, setShow] = useState<boolean>(true)
+    const [show, setShow] = useState<boolean>(false)
 
     const start = () => {
         // пишут студенты // запустить часы (должно отображаться реальное время, а не +1)
@@ -21,12 +21,8 @@ console.log(startDate);
 console.log('stop');
     }
 
-    const onMouseEnter = () => { // пишут студенты // показать дату если наведена мышка
-
-    }
-    const onMouseLeave = () => { // пишут студенты // спрятать дату если мышка не наведена
-
-    }
+    const onMouseEnter = () => setShow(true);
+    const onMouseLeave = () => setShow(false);
 
     const stringTime = new Date().toLocaleTimeString([], { hour12:false, hour: '2-digit', minute: '2-digit', second: '2-digit' })|| <br/> ;// часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
     const stringDate = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '.') || <br/>; // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
