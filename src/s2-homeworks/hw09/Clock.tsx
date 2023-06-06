@@ -24,11 +24,22 @@ console.log('stop');
     const onMouseEnter = () => setShow(true);
     const onMouseLeave = () => setShow(false);
 
-    const stringTime = new Date().toLocaleTimeString([], { hour12:false, hour: '2-digit', minute: '2-digit', second: '2-digit' })|| <br/> ;// часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
-    const stringDate = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '.') || <br/>; // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
+    const currentDate = new Date();
 
-    const stringDay = new Date().toLocaleString('en-US', { weekday: 'long' }) || <br/>;
-    const stringMonth = new Date().toLocaleString('en-US', { month: 'long' }) || <br/>
+    const stringTime = currentDate.toLocaleTimeString('en-US', {
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    }) || '';
+    const stringDate = currentDate.toLocaleDateString('en-US', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    }).replace(/\//g, '.') || '';
+    const stringDay = currentDate.toLocaleString('en-US', { weekday: 'long' }) || '';
+    const stringMonth = currentDate.toLocaleString('en-US', { month: 'long' }) || '';
+
 
     return (
         <div className={s.clock}>
