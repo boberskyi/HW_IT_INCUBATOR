@@ -12,6 +12,7 @@
 
 .disabled {
   background-color: #004D99;
+  color: #fff;
   opacity: 0.5;
 }
 
