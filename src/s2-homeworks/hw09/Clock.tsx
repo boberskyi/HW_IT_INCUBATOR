@@ -10,16 +10,16 @@ function Clock() {
     const [show, setShow] = useState<boolean>(false)
 
     const start = () => {
-        // пишут студенты // запустить часы (должно отображаться реальное время, а не +1)
-        // сохранить ид таймера (https://learn.javascript.ru/settimeout-setinterval#setinterval)
-
-        // saveState
         let timerTest = setInterval(() => setDate(new Date(restoreState('hw9-date', Date.now()))), 1000);
-        // timer test to timerId
         setTimerId(Number(timerTest));
     }
 
-    const stop = () => setTimerId(undefined);
+    const stop = () => {
+        if (timerId) {
+            clearInterval(timerId);
+            setTimerId(undefined);
+        }
+    }
 
     const onMouseEnter = () => setShow(true);
     const onMouseLeave = () => setShow(false);
