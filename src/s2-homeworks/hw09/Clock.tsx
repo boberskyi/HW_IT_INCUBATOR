@@ -28,7 +28,7 @@ console.log('stop');
 
     }
 
-    const stringTime = 'date->time' || <br/> // часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
+    const stringTime = new Date().toLocaleTimeString([], { hour12:false, hour: '2-digit', minute: '2-digit', second: '2-digit' })|| <br/> ;// часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
     const stringDate = 'date->date' || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
 
     const stringDay = new Date().toLocaleString('en-US', { weekday: 'long' }) || <br/>;
