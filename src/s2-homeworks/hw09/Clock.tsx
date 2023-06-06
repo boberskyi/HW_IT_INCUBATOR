@@ -16,12 +16,10 @@ function Clock() {
         // saveState
         let timerTest = setInterval(() => setDate(new Date(restoreState('hw9-date', Date.now()))), 1000);
         // timer test to timerId
+        setTimerId(Number(timerTest));
     }
 
-    const stop = () => {
-        // пишут студенты // поставить часы на паузу, обнулить ид таймера (timerId <- undefined)
-console.log('stop');
-    }
+    const stop = () => setTimerId(undefined);
 
     const onMouseEnter = () => setShow(true);
     const onMouseLeave = () => setShow(false);
@@ -74,14 +72,14 @@ console.log('stop');
             <div className={s.buttonsContainer}>
                 <SuperButton
                     id={'hw9-button-start'}
-                    disabled={false} // пишут студенты // задизэйблить если таймер запущен
+                    disabled={timerId !== undefined} // пишут студенты // задизэйблить если таймер запущен
                     onClick={start}
                 >
                     start
                 </SuperButton>
                 <SuperButton
                     id={'hw9-button-stop'}
-                    disabled={true} // пишут студенты // задизэйблить если таймер не запущен
+                    disabled={timerId === undefined} // пишут студенты // задизэйблить если таймер не запущен
                     onClick={stop}
                 >
                     stop
